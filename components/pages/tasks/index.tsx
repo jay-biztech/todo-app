@@ -5,7 +5,9 @@ import { tasks } from './mock';
 export const Tasks: React.FC = () => {
   return (
     <div className="container mt-3">
-      <Heading>Tasks List</Heading>
+      <Heading>
+        <center>Tasks List</center>
+      </Heading>
       <List>{tasks}</List>
     </div>
   );
