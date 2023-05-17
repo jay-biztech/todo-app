@@ -1,14 +1,21 @@
+import { useTasksQuery } from '../../../services/tasks';
 import { Heading } from '../../atoms/Heading';
 import { List } from '../../atoms/List';
-import { tasks } from './mock';
 
-export const Tasks: React.FC = () => {
+export const Tasks = () => {
+  const { data: tasks } = useTasksQuery();
+
   return (
     <div className="container mt-3">
       <Heading>
         <center>Tasks List</center>
       </Heading>
-      <List>{tasks}</List>
+      <ul>
+        {tasks &&
+          tasks.map((task) => {
+            return <li key={task.id}>{task.name}</li>;
+          })}
+      </ul>
     </div>
   );
 };

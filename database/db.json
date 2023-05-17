@@ -17,6 +17,12 @@
       "name": "Travelling to Mumbai",
       "date": "18-05-23",
       "isCompleted": false
+    },
+    {
+      "id": 4,
+      "name": "Travelling to Goa",
+      "date": "18-05-23",
+      "isCompleted": false
     }
   ]
 }
