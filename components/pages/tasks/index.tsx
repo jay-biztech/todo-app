@@ -18,7 +18,7 @@ export const Tasks: React.FC = () => {
                     <Button
                       title="Delete"
                       buttonType={ButtonType.Danger}
-                      onClick={() => mutate(task.id)}
+                      onClick={() => mutate(Number(task.id))}
                     />
                   </div>
                 </li>

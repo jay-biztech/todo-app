@@ -7,12 +7,8 @@ export const fetchTasks = async () => {
   return data;
 };
 
-export const saveTask = async (
-  name: string,
-  isCompleted: boolean,
-  date: Date
-) => {
-  const { data } = await axios.post('/api/tasks', { name, isCompleted, date });
+export const postTask = async (task: Omit<Task, 'id'>) => {
+  const { data } = await axios.post<Task>('/api/tasks', task);
   return data;
 };
 
@@ -24,11 +20,26 @@ export const deleteTask = async (id: number) => {
 export const useTasksQuery = () =>
   useQuery<Task[]>(['tasks'], () => fetchTasks());
 
-export const useSaveTaskQuery = (
-  name: string,
-  isCompleted: boolean,
-  date: Date
-) => useQuery(['task'], () => saveTask(name, isCompleted, date));
+export const useCreateTaskMutation = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation(postTask, {
+    onMutate: async (newTask: Omit<Task, 'id'>) => {
+      await queryClient.cancelQueries({
+        queryKey: ['tasks'],
+      });
+      await queryClient.cancelQueries({ queryKey: ['tasks'] });
+
+      const previousValue = queryClient.getQueryData<Task[]>(['tasks']);
+
+      queryClient.setQueryData<Task[]>(['tasks'], (old) => {
+        return [...(old || []), { ...newTask, id: crypto.randomUUID() }];
+      });
+
+      return { previousValue };
+    },
+  });
+};
 
 export const useDeleteTaskMutation = () => {
   const queryClient = useQueryClient();

@@ -1,6 +1,6 @@
 export type Task = {
-  id: number;
+  id: number | string;
   name: string;
-  date: string;
+  date: Date;
   isCompleted: boolean;
 };
