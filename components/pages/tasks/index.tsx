@@ -1,9 +1,13 @@
-import Link from 'next/link';
-import { deleteTask, useTasksQuery } from '../../../services/tasks';
+import {
+  deleteTask,
+  useDeleteTaskMutation,
+  useTasksQuery,
+} from '../../../services/tasks';
 import Button, { ButtonType } from '../../atoms/Button';
 
 export const Tasks: React.FC = () => {
   const { data: tasks, isLoading } = useTasksQuery();
+  const { mutate } = useDeleteTaskMutation();
 
   return (
     <>
@@ -18,7 +22,7 @@ export const Tasks: React.FC = () => {
                     <Button
                       title="Delete"
                       buttonType={ButtonType.Danger}
-                      onClick={() => deleteTask(task.id)}
+                      onClick={() => mutate(task.id)}
                     />
                   </div>
                 </li>
