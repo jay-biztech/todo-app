@@ -4,5 +4,5 @@ export type ButtonProps = {
   title: string;
   type?: 'submit' | 'reset' | 'button';
   buttonType?: ButtonType;
-  onClick: () => void;
+  onClick?: () => void;
 };

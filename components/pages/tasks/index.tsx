@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { useTasksQuery } from '../../../services/tasks';
+import { deleteTask, useTasksQuery } from '../../../services/tasks';
 import Button, { ButtonType } from '../../atoms/Button';
 
 export const Tasks: React.FC = () => {
@@ -18,7 +18,7 @@ export const Tasks: React.FC = () => {
                     <Button
                       title="Delete"
                       buttonType={ButtonType.Danger}
-                      onClick={() => alert(task.id)}
+                      onClick={() => deleteTask(task.id)}
                     />
                   </div>
                 </li>

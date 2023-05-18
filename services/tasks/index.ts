@@ -16,6 +16,11 @@ export const saveTask = async (
   return data;
 };
 
+export const deleteTask = async (id: number) => {
+  const { data } = await axios.delete(`/api/tasks/${id}`);
+  return data;
+};
+
 export const useTasksQuery = () =>
   useQuery<Task[]>(['tasks'], () => fetchTasks());
 

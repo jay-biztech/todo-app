@@ -1,70 +1,16 @@
 {
   "tasks": [
     {
-      "id": 1,
+      "name": "Learn next js",
+      "isCompleted": false,
+      "date": "2023-05-18T09:41:26.323Z",
+      "id": 1
+    },
+    {
       "name": "Swimming",
-      "date": "12-05-23",
-      "isCompleted": true
-    },
-    {
-      "id": 2,
-      "name": "Learn Next JS",
-      "date": "15-05-23",
-      "isCompleted": false
-    },
-    {
-      "id": 3,
-      "name": "Travelling to Mumbai",
-      "date": "18-05-23",
-      "isCompleted": false
-    },
-    {
-      "id": 4,
-      "name": "Travelling to Goa",
-      "date": "18-05-23",
-      "isCompleted": false
-    },
-    {
-      "name": "asdasd",
       "isCompleted": false,
-      "date": "2023-05-18T06:24:28.176Z",
-      "id": 5
-    },
-    {
-      "name": "awsd",
-      "isCompleted": false,
-      "date": "2023-05-18T06:29:03.931Z",
-      "id": 6
-    },
-    {
-      "name": "asdasddsa asd sda sd sa das ads as sdasd sad a",
-      "isCompleted": false,
-      "date": "2023-05-18T06:35:17.291Z",
-      "id": 7
-    },
-    {
-      "name": "22324",
-      "isCompleted": false,
-      "date": "2023-05-18T06:51:53.112Z",
-      "id": 8
-    },
-    {
-      "name": "123213",
-      "isCompleted": false,
-      "date": "2023-05-18T06:52:18.078Z",
-      "id": 9
-    },
-    {
-      "name": "1232113",
-      "isCompleted": false,
-      "date": "2023-05-18T06:52:18.078Z",
-      "id": 10
-    },
-    {
-      "name": "123213123213",
-      "isCompleted": false,
-      "date": "2023-05-18T06:52:18.078Z",
-      "id": 11
+      "date": "2023-05-18T09:41:35.848Z",
+      "id": 2
     }
   ]
 }
