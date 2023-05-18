@@ -1,6 +1,8 @@
 import { Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
-import Button, { ButtonType } from '../../components/atoms/Button';
+
+import Button from '../../components/atoms/Button';
+import { ButtonType } from '../../components/atoms/Button/types';
 import { Heading } from '../../components/atoms/Heading';
 import { useCreateTaskMutation } from '../../services/tasks';
 
