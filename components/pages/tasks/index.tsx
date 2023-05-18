@@ -1,8 +1,4 @@
-import {
-  deleteTask,
-  useDeleteTaskMutation,
-  useTasksQuery,
-} from '../../../services/tasks';
+import { useDeleteTaskMutation, useTasksQuery } from '../../../services/tasks';
 import Button, { ButtonType } from '../../atoms/Button';
 
 export const Tasks: React.FC = () => {
