@@ -7,8 +7,12 @@ export const fetchTasks = async () => {
   return response;
 };
 
-export const save = async (name: string) => {
-  const data = await axios.post(`${process.env.BASE_URL}/tasks`, { name });
+export const save = async (name: string, isCompleted: boolean, date: Date) => {
+  const data = await axios.post(`${process.env.BASE_URL}/tasks`, {
+    name,
+    isCompleted,
+    date,
+  });
   const [response] = await Promise.all([data]);
   return response;
 };
@@ -18,7 +22,8 @@ export default async function handler(
   res: NextApiResponse
 ) {
   if (req.method === 'POST') {
-    const result = await save(req.body.name);
+    const { name, isCompleted, date } = req.body;
+    const result = await save(name, isCompleted, date);
     res.status(200).json(result.data);
   } else {
     const result = await fetchTasks();

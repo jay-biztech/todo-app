@@ -28,7 +28,7 @@ const CreateTask: React.FC = () => {
         validationSchema={TaskSchema}
         onSubmit={(values, actions) => {
           const { name, isCompleted, date } = values;
-          saveTask(name);
+          saveTask(name, isCompleted, date);
           actions.setSubmitting(false);
           actions.resetForm();
         }}
