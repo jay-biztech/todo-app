@@ -1,5 +1,6 @@
 import { useDeleteTaskMutation, useTasks } from '../../../services/tasks';
-import Button, { ButtonType } from '../../atoms/Button';
+import Button from '../../atoms/Button';
+import { ButtonType } from '../../atoms/Button/types';
 
 export const Tasks: React.FC = () => {
   const { data: tasks, isLoading } = useTasks();

@@ -2,19 +2,20 @@ import type { NextPage } from 'next';
 import { Tasks } from '../components/pages/tasks';
 import Link from 'next/link';
 import { Heading } from '../components/atoms/Heading';
-import Button, { ButtonType } from '../components/atoms/Button';
+import Button from '../components/atoms/Button';
+import { ButtonType } from '../components/atoms/Button/types';
 
 const Home: NextPage = () => {
   return (
     <>
-      <Heading>
-        <center>Tasks List</center>
-      </Heading>
       <center>
         <div className="col-md-6">
-          <Link href={'/tasks/create'}>
-            <Button title="Create Task" buttonType={ButtonType.Secondary} />
-          </Link>
+          <div className="d-flex justify-content-center">
+            <Heading>Tasks List</Heading>
+            <Link href={'/tasks/create'} className="mt-1">
+              <Button title="Create" buttonType={ButtonType.Secondary} />
+            </Link>
+          </div>
           <Tasks />
         </div>
       </center>
