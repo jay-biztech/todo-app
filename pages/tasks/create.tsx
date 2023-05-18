@@ -2,10 +2,12 @@ import { Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import Button, { ButtonType } from '../../components/atoms/Button';
 import { Heading } from '../../components/atoms/Heading';
-import { saveTask } from '../../services/tasks';
+import { useCreateTaskMutation } from '../../services/tasks';
 
 const CreateTask: React.FC = () => {
-  let TaskSchema = Yup.object().shape({
+  const { mutate: createTask } = useCreateTaskMutation();
+
+  const TaskSchema = Yup.object().shape({
     name: Yup.string()
       .min(2, 'Too Short!')
       .max(50, 'Too Long!')
@@ -26,9 +28,8 @@ const CreateTask: React.FC = () => {
           date: new Date(),
         }}
         validationSchema={TaskSchema}
-        onSubmit={(values, actions) => {
-          const { name, isCompleted, date } = values;
-          saveTask(name, isCompleted, date);
+        onSubmit={(task, actions) => {
+          createTask(task);
           actions.setSubmitting(false);
           actions.resetForm();
         }}
