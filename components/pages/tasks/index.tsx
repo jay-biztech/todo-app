@@ -1,14 +1,10 @@
 import { useTasksQuery } from '../../../services/tasks';
-import { Heading } from '../../atoms/Heading';
 
-export const Tasks = () => {
+export const Tasks: React.FC = () => {
   const { data: tasks, isLoading } = useTasksQuery();
 
   return (
-    <div className="container mt-3">
-      <Heading>
-        <center>Tasks List</center>
-      </Heading>
+    <>
       <ul>
         {tasks === undefined || isLoading
           ? 'Loading...'
@@ -16,6 +12,6 @@ export const Tasks = () => {
               return <li key={task.id}>{task.name}</li>;
             })}
       </ul>
-    </div>
+    </>
   );
 };
