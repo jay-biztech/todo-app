@@ -25,9 +25,6 @@ export const useCreateTaskMutation = () => {
 
   return useMutation(postTask, {
     onMutate: async (newTask: Omit<Task, 'id'>) => {
-      await queryClient.cancelQueries({
-        queryKey: ['tasks'],
-      });
       await queryClient.cancelQueries({ queryKey: ['tasks'] });
 
       const previousValue = queryClient.getQueryData<Task[]>(['tasks']);
