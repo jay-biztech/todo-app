@@ -1,9 +1,10 @@
 import type { NextPage } from 'next';
-import { Tasks } from '../components/pages/tasks';
 import Link from 'next/link';
-import { Heading } from '../components/atoms/Heading';
+
 import Button from '../components/atoms/Button';
 import { ButtonType } from '../components/atoms/Button/types';
+import { Heading } from '../components/atoms/Heading';
+import { Tasks } from '../components/pages/tasks';
 
 const Home: NextPage = () => {
   return (

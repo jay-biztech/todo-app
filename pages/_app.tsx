@@ -1,4 +1,5 @@
 import { QueryClient, QueryClientProvider } from 'react-query';
+
 import 'bootstrap/dist/css/bootstrap.css';
 import '../styles/globals.css';
 
