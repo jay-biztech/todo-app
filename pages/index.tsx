@@ -10,10 +10,14 @@ const Home: NextPage = () => {
       <Heading>
         <center>Tasks List</center>
       </Heading>
-      <Link href={'/tasks/create'}>
-        <Button title="Create Task" buttonType={ButtonType.Secondary} />
-      </Link>
-      <Tasks />
+      <center>
+        <div className="col-md-6">
+          <Link href={'/tasks/create'}>
+            <Button title="Create Task" buttonType={ButtonType.Secondary} />
+          </Link>
+          <Tasks />
+        </div>
+      </center>
     </>
   );
 };
