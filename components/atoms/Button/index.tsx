@@ -23,7 +23,7 @@ const Button: React.FC<ButtonProps> = ({
     <button
       type={type === undefined ? 'button' : type}
       className={`btn ${buttonType} mt-1 mb-1`}
-      onClick={onClick}
+      {...{ onClick }}
     >
       {title}
     </button>
