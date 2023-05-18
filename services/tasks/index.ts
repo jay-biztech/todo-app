@@ -1,5 +1,5 @@
-import { useQuery } from 'react-query';
 import axios from 'axios';
+import { useQuery } from 'react-query';
 import { Task } from '../../pages/api/tasks/types';
 
 export const fetchTasks = async () => {
@@ -7,5 +7,20 @@ export const fetchTasks = async () => {
   return data;
 };
 
+export const saveTask = async (
+  name: string,
+  isCompleted: boolean,
+  date: Date
+) => {
+  const { data } = await axios.post('/api/tasks', { name, isCompleted, date });
+  return data;
+};
+
 export const useTasksQuery = () =>
   useQuery<Task[]>(['tasks'], () => fetchTasks());
+
+export const useSaveTaskQuery = (
+  name: string,
+  isCompleted: boolean,
+  date: Date
+) => useQuery(['task'], () => saveTask(name, isCompleted, date));

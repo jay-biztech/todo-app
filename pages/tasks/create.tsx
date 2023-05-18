@@ -1,8 +1,8 @@
-import axios from 'axios';
-import { Form, Formik, Field } from 'formik';
+import { Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
-import { Heading } from '../../components/atoms/Heading';
 import Button, { ButtonType } from '../../components/atoms/Button';
+import { Heading } from '../../components/atoms/Heading';
+import { saveTask } from '../../services/tasks';
 
 const CreateTask: React.FC = () => {
   let TaskSchema = Yup.object().shape({
@@ -28,11 +28,7 @@ const CreateTask: React.FC = () => {
         validationSchema={TaskSchema}
         onSubmit={(values, actions) => {
           const { name, isCompleted, date } = values;
-          axios.post('http://localhost:4000/tasks', {
-            name,
-            isCompleted,
-            date,
-          });
+          saveTask(name, isCompleted, date);
           actions.setSubmitting(false);
           actions.resetForm();
         }}
