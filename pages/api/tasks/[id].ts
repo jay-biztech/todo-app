@@ -5,10 +5,22 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const data = await axios.delete(
-    `${process.env.BASE_URL}/tasks/${req.query.id}`
-  );
-  const [response] = await Promise.all([data]);
+  if (req.method === 'DELETE') {
+    const data = await axios.delete(
+      `${process.env.BASE_URL}/tasks/${req.query.id}`
+    );
+    const [response] = await Promise.all([data]);
 
-  res.status(200).json(response.data);
+    res.status(200).json(response.data);
+  } else if (req.method === 'PATCH') {
+    const { isCompleted } = req.body;
+
+    const data = await axios.patch(
+      `${process.env.BASE_URL}/tasks/${req.query.id}`,
+      { isCompleted }
+    );
+    const [response] = await Promise.all([data]);
+
+    res.status(200).json(response.data);
+  }
 }
