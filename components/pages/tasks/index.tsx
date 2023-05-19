@@ -15,15 +15,15 @@ export const Tasks: React.FC = () => {
         <>
           <ul>
             <h4>In progress</h4>
-            {inProgressTasks?.map(({ id, name }) => {
-              return <Task key={id} {...{ id, name }} />;
+            {inProgressTasks?.map(({ id, name, isCompleted, date }) => {
+              return <Task key={id} {...{ id, name, isCompleted, date }} />;
             })}
           </ul>
 
           <ul>
             <h4>Completed</h4>
-            {completedTasks?.map(({ id, name }) => {
-              return <Task key={id} {...{ id, name }} />;
+            {completedTasks?.map(({ id, name, isCompleted, date }) => {
+              return <Task key={id} {...{ id, name, isCompleted, date }} />;
             })}
           </ul>
         </>

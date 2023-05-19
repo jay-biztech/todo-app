@@ -12,7 +12,7 @@ const Home: NextPage = () => {
       <center>
         <div className="col-md-6">
           <div className="d-flex justify-content-center">
-            <Heading>Tasks List</Heading>
+            <Heading>All Tasks</Heading>
             <Link href={'/tasks/create'} className="mt-1">
               <Button title="Create" buttonType={ButtonType.Secondary} />
             </Link>
