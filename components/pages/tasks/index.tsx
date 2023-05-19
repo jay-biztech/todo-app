@@ -1,31 +1,33 @@
-import { useDeleteTaskMutation, useTasks } from '../../../services/tasks';
-import Button from '../../atoms/Button';
-import { ButtonType } from '../../atoms/Button/types';
+import { useTasks } from '../../../services/tasks';
+import { Task } from '../../organisms/task';
+import { completed, inProgress } from './utils';
 
 export const Tasks: React.FC = () => {
   const { data: tasks, isLoading } = useTasks();
-  const { mutate } = useDeleteTaskMutation();
+  const inProgressTasks = inProgress(tasks);
+  const completedTasks = completed(tasks);
 
   return (
     <>
-      <ul>
-        {tasks === undefined || isLoading
-          ? 'Loading...'
-          : tasks.map((task) => {
-              return (
-                <li key={task.id}>
-                  <div className="d-flex justify-content-between">
-                    {task.name}
-                    <Button
-                      title="Delete"
-                      buttonType={ButtonType.Danger}
-                      onClick={() => mutate(Number(task.id))}
-                    />
-                  </div>
-                </li>
-              );
+      {isLoading ? (
+        'isLoading...'
+      ) : (
+        <>
+          <ul>
+            <h4>In progress</h4>
+            {inProgressTasks?.map(({ id, name }) => {
+              return <Task key={id} {...{ id, name }} />;
             })}
-      </ul>
+          </ul>
+
+          <ul>
+            <h4>Completed</h4>
+            {completedTasks?.map(({ id, name }) => {
+              return <Task key={id} {...{ id, name }} />;
+            })}
+          </ul>
+        </>
+      )}
     </>
   );
 };
