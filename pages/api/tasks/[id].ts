@@ -12,15 +12,5 @@ export default async function handler(
     const [response] = await Promise.all([data]);
 
     res.status(200).json(response.data);
-  } else if (req.method === 'PATCH') {
-    const { isCompleted } = req.body;
-
-    const data = await axios.patch(
-      `${process.env.BASE_URL}/tasks/${req.query.id}`,
-      { isCompleted }
-    );
-    const [response] = await Promise.all([data]);
-
-    res.status(200).json(response.data);
   }
 }

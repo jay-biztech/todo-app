@@ -6,11 +6,11 @@ import { QUERY_KEYS } from '../config';
 const { TASKS_QUERY_KEY } = QUERY_KEYS;
 
 export const markAsCompleted = async (id: number) => {
-  const { data } = await axios.patch(`/api/tasks/${id}`, { isCompleted: true });
+  const { data } = await axios.patch(`/api/tasks/${id}/completed`);
   return data;
 };
 
-export const useUpdateTaskMutation = () => {
+export const useCompleteTaskMutation = () => {
   const queryClient = useQueryClient();
 
   return useMutation(markAsCompleted, {
