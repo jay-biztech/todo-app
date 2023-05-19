@@ -1,4 +1,4 @@
 export type TaskProps = {
-  id: number;
+  id: string | number;
   name: string;
 };
