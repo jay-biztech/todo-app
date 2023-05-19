@@ -1,7 +1,6 @@
 import { useTasks } from '../../../services/tasks';
 import { NotFound } from '../../atoms/NotFound';
 import { TaskListView } from '../../organisms/ListView/tasks';
-import { Task } from '../../organisms/task';
 import { completed, inProgress } from './utils';
 
 export const Tasks: React.FC = () => {

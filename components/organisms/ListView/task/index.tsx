@@ -1,7 +1,7 @@
-import { useDeleteTaskMutation } from '../../../services/tasks';
-import { useCompleteTaskMutation } from '../../../services/tasks/useCompleteTaskMutation';
-import Button from '../../atoms/Button';
-import { ButtonType } from '../../atoms/Button/types';
+import { useDeleteTaskMutation } from '../../../../services/tasks';
+import { useCompleteTaskMutation } from '../../../../services/tasks/useCompleteTaskMutation';
+import Button from '../../../atoms/Button';
+import { ButtonType } from '../../../atoms/Button/types';
 import { TaskProps } from './type';
 
 export const Task: React.FC<TaskProps> = ({ id, name, isCompleted, date }) => {
