@@ -1,6 +1,6 @@
 import { Task } from '../../../../pages/api/tasks/types';
 
-export type TaskDetailViewProps = {
+export type TaskCardViewProps = {
   inProgressTasks: Task[];
   completedTasks: Task[];
 };
