@@ -1,5 +1,6 @@
 import { useTasks } from '../../../services/tasks';
 import { NotFound } from '../../atoms/NotFound';
+import { TaskListView } from '../../organisms/ListView/tasks';
 import { Task } from '../../organisms/task';
 import { completed, inProgress } from './utils';
 
@@ -18,22 +19,8 @@ export const Tasks: React.FC = () => {
         'isLoading...'
       ) : (
         <>
-          {inProgressTasks && inProgressTasks.length > 0 && (
-            <ul>
-              <h4>In progress</h4>
-              {inProgressTasks.map(({ id, name, isCompleted, date }) => {
-                return <Task key={id} {...{ id, name, isCompleted, date }} />;
-              })}
-            </ul>
-          )}
-
-          {completedTasks && completedTasks.length > 0 && (
-            <ul>
-              <h4>Completed</h4>
-              {completedTasks.map(({ id, name, isCompleted, date }) => {
-                return <Task key={id} {...{ id, name, isCompleted, date }} />;
-              })}
-            </ul>
+          {inProgressTasks && completedTasks && (
+            <TaskListView {...{ inProgressTasks, completedTasks }} />
           )}
         </>
       )}
