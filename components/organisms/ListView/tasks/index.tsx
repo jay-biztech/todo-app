@@ -9,7 +9,7 @@ export const TaskListView: React.FC<TaskListViewProps> = ({
     <>
       {inProgressTasks && inProgressTasks.length > 0 && (
         <ul>
-          <h4>In progress</h4>
+          <h4>In progress</h4><hr/>
           {inProgressTasks.map(({ id, name, isCompleted, date }) => {
             return <Task key={id} {...{ id, name, isCompleted, date }} />;
           })}
@@ -18,7 +18,7 @@ export const TaskListView: React.FC<TaskListViewProps> = ({
 
       {completedTasks && completedTasks.length > 0 && (
         <ul>
-          <h4>Completed</h4>
+          <h4>Completed</h4><hr/>
           {completedTasks.map(({ id, name, isCompleted, date }) => {
             return <Task key={id} {...{ id, name, isCompleted, date }} />;
           })}
