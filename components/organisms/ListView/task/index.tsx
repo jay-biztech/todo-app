@@ -4,7 +4,7 @@ import Button from '../../../atoms/Button';
 import { ButtonType } from '../../../atoms/Button/types';
 import { TaskProps } from './type';
 
-export const Task: React.FC<TaskProps> = ({ id, name, isCompleted, date }) => {
+export const Task: React.FC<TaskProps> = ({ id, name, isCompleted, dueDate }) => {
   const { mutate: deleteTask } = useDeleteTaskMutation();
   const { mutate: completeTask } = useCompleteTaskMutation();
 
