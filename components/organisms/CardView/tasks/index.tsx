@@ -9,10 +9,11 @@ export const TaskCardView: React.FC<TaskCardViewProps> = ({
     <>
       {inProgressTasks && inProgressTasks.length > 0 && (
         <>
-          <h4>In progress</h4><hr/>
+          <h4>In progress</h4>
+          <hr />
           <div className="d-flex justify-content-around">
-            {inProgressTasks.map(({ id, name, isCompleted, date }) => {
-              return <Task key={id} {...{ id, name, isCompleted, date }} />;
+            {inProgressTasks.map(({ id, name, isCompleted, dueDate }) => {
+              return <Task key={id} {...{ id, name, isCompleted, dueDate }} />;
             })}
           </div>
         </>
@@ -20,10 +21,11 @@ export const TaskCardView: React.FC<TaskCardViewProps> = ({
 
       {completedTasks && completedTasks.length > 0 && (
         <>
-          <h4>Completed</h4><hr/>
+          <h4>Completed</h4>
+          <hr />
           <div className="d-flex justify-content-around">
-            {completedTasks.map(({ id, name, isCompleted, date }) => {
-              return <Task key={id} {...{ id, name, isCompleted, date }} />;
+            {completedTasks.map(({ id, name, isCompleted, dueDate }) => {
+              return <Task key={id} {...{ id, name, isCompleted, dueDate }} />;
             })}
           </div>
         </>

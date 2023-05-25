@@ -1,14 +1,14 @@
 import { Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
-import DatePicker from 'react-datepicker';
 
 import 'react-datepicker/dist/react-datepicker.css';
 
+import React from 'react';
 import Button from '../../components/atoms/Button';
 import { ButtonType } from '../../components/atoms/Button/types';
-import { Heading } from '../../components/atoms/Heading';
+import { DatePickerField } from '../../components/atoms/Fields/DatePicker';
 import { useCreateTaskMutation } from '../../services/tasks';
-import { useState } from 'react';
+import { Heading } from '../../components/atoms/Heading';
 
 const CreateTask: React.FC = () => {
   const TaskSchema = Yup.object().shape({
@@ -21,7 +21,6 @@ const CreateTask: React.FC = () => {
   });
 
   const { mutate: createTask } = useCreateTaskMutation();
-  const [dueDate, setDueDate] = useState<Date>();
 
   return (
     <>
@@ -32,12 +31,10 @@ const CreateTask: React.FC = () => {
         initialValues={{
           name: '',
           isCompleted: false,
-          dueDate: null,
+          dueDate: new Date(),
         }}
         validationSchema={TaskSchema}
         onSubmit={(task, actions) => {
-          console.log(task);
-
           createTask(task);
           actions.setSubmitting(false);
           actions.resetForm();
@@ -58,16 +55,9 @@ const CreateTask: React.FC = () => {
 
             <div className="mb-3">
               <label htmlFor="date">Date</label>
-              <DatePicker
-                id="dueDate"
-                name="dueDate"
-                selected={dueDate}
-                onChange={(date: Date) => setDueDate(date)}
-                className="form-control"
-                value={dueDate}
-              />
+              <DatePickerField name="dueDate" className="form-control" />
               {errors.dueDate && touched.dueDate ? (
-                <div>{errors.dueDate}</div>
+                <div>{errors.dueDate as string}</div>
               ) : null}
             </div>
 
