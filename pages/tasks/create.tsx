@@ -55,7 +55,11 @@ const CreateTask: React.FC = () => {
 
             <div className="mb-3">
               <label htmlFor="date">Date</label>
-              <DatePickerField name="dueDate" className="form-control" />
+              <DatePickerField
+                name="dueDate"
+                className="form-control"
+                minDate={new Date()}
+              />
               {errors.dueDate && touched.dueDate ? (
                 <div>{errors.dueDate as string}</div>
               ) : null}
