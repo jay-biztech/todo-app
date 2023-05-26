@@ -5,7 +5,7 @@ import { QUERY_KEYS } from '../config';
 
 const { TASKS_QUERY_KEY } = QUERY_KEYS;
 
-export const deleteTask = async (id: number) => {
+export const deleteTask = async (id: string) => {
   const { data } = await axios.delete(`/api/tasks/${id}`);
   return data;
 };
@@ -15,7 +15,9 @@ export const useDeleteTaskMutation = () => {
 
   return useMutation(deleteTask, {
     onMutate: async (id) => {
-      await queryClient.removeQueries({ queryKey: [TASKS_QUERY_KEY, id] });
+      await queryClient.removeQueries({
+        queryKey: [TASKS_QUERY_KEY, id.toString()],
+      });
 
       const previousValue = queryClient.getQueryData([TASKS_QUERY_KEY]);
 
