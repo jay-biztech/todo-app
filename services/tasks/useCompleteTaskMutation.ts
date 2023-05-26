@@ -5,7 +5,7 @@ import { QUERY_KEYS } from '../config';
 
 const { TASKS_QUERY_KEY } = QUERY_KEYS;
 
-export const markAsCompleted = async (id: number) => {
+export const markAsCompleted = async (id: string) => {
   const { data } = await axios.patch(`/api/tasks/${id}/completed`);
   return data;
 };

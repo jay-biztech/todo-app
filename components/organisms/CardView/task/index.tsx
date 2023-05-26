@@ -30,13 +30,13 @@ export const Task: React.FC<TaskProps> = ({
               <Button
                 title="Mark as Completed"
                 buttonType={ButtonType.Success}
-                onClick={() => completeTask(Number(id))}
+                onClick={() => completeTask(id)}
               />
             )}
             <Button
               title="Delete"
               buttonType={ButtonType.Danger}
-              onClick={() => deleteTask(Number(id))}
+              onClick={() => deleteTask(id)}
             />
           </div>
         </div>
