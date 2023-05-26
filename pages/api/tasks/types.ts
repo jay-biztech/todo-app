@@ -1,6 +1,6 @@
 export type Task = {
   id: string | number;
   name: string;
-  dueDate: Date;
+  dueDate: Date | string;
   isCompleted: boolean;
 };

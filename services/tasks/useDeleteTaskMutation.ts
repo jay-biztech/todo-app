@@ -15,7 +15,7 @@ export const useDeleteTaskMutation = () => {
 
   return useMutation(deleteTask, {
     onMutate: async (id) => {
-      await queryClient.cancelQueries({ queryKey: [TASKS_QUERY_KEY] });
+      await queryClient.removeQueries({ queryKey: [TASKS_QUERY_KEY, id] });
 
       const previousValue = queryClient.getQueryData([TASKS_QUERY_KEY]);
 

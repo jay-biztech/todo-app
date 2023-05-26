@@ -5,6 +5,7 @@ import '../styles/globals.css';
 
 import type { AppProps } from 'next/app';
 import Link from 'next/link';
+import { ReactQueryDevtools } from 'react-query/devtools';
 import Button from '../components/atoms/Button';
 import { ButtonType, Size } from '../components/atoms/Button/types';
 
@@ -23,6 +24,7 @@ function App({ Component, pageProps }: AppProps) {
         </Link>
         <Component {...pageProps} />
       </div>
+      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
 }

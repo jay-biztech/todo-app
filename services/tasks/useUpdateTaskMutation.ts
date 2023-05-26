@@ -5,8 +5,8 @@ import { QUERY_KEYS } from '../config';
 
 const { TASKS_QUERY_KEY } = QUERY_KEYS;
 
-export const patchTask = async (task: Omit<Task, 'id'>) => {
-  const { data } = await axios.patch<Task>(`/api/tasks`, task);
+export const patchTask = async (task: Task) => {
+  const { data } = await axios.patch<Task>(`/api/tasks/${task.id}`, { task });
   return data;
 };
 
@@ -14,12 +14,19 @@ export const useUpdateTaskMutation = () => {
   const queryClient = useQueryClient();
 
   return useMutation(patchTask, {
-    onMutate: async (updatedTask) => {
-      await queryClient.cancelQueries({ queryKey: [TASKS_QUERY_KEY] });
+    onMutate: async (updatedTask: Task) => {
+      await queryClient.cancelQueries({
+        queryKey: [TASKS_QUERY_KEY, updatedTask.id],
+      });
 
-      const previousValue = queryClient.getQueryData<Task[]>([TASKS_QUERY_KEY]);
+      const previousValue = queryClient.getQueryData<Task>([
+        TASKS_QUERY_KEY,
+        updatedTask.id,
+      ]);
 
-      // Update task
+      queryClient.setQueryData<Task>([TASKS_QUERY_KEY, updatedTask.id], {
+        ...updatedTask,
+      });
 
       return { previousValue };
     },

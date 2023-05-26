@@ -1,13 +1,14 @@
-import { Field, Form, Formik } from 'formik';
 import React from 'react';
 
+import { format, parseISO } from 'date-fns';
+import { Field, Form, Formik } from 'formik';
+
+import { useTask } from '../../../services/tasks/useTask';
 import { useUpdateTaskMutation } from '../../../services/tasks/useUpdateTaskMutation';
 import { TaskSchema } from '../../../validator/task-schema';
 import Button from '../../atoms/Button';
 import { ButtonType } from '../../atoms/Button/types';
 import { DatePickerField } from '../../atoms/Fields/DatePicker';
-import { useTask } from '../../../services/tasks/useTask';
-import { NotFound } from '../../atoms/NotFound';
 
 export const EditTaskForm: React.FC<{ id: string }> = ({ id }) => {
   const { data: task, isLoading } = useTask(id);
@@ -26,9 +27,8 @@ export const EditTaskForm: React.FC<{ id: string }> = ({ id }) => {
       }}
       validationSchema={TaskSchema}
       onSubmit={(task, actions) => {
-        updateTask(task);
+        updateTask({ id, ...task });
         actions.setSubmitting(false);
-        actions.resetForm();
       }}
     >
       {({ errors, touched }) => (

@@ -1,4 +1,4 @@
-import React from 'react';
+import { format } from 'date-fns';
 import { useField, useFormikContext } from 'formik';
 import DatePicker from 'react-datepicker';
 
@@ -12,9 +12,9 @@ export const DatePickerField = ({ ...props }) => {
     <DatePicker
       {...field}
       {...props}
-      selected={(field.value && new Date(field.value)) || null}
+      selected={field.value && new Date(field.value)}
       onChange={(val) => {
-        setFieldValue(field.name, val);
+        setFieldValue(field.name, format(val, 'yyyy-MM-dd'));
       }}
     />
   );

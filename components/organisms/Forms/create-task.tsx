@@ -1,5 +1,6 @@
-import React from 'react';
+import { format } from 'date-fns';
 import { Field, Form, Formik } from 'formik';
+import React from 'react';
 
 import { useCreateTaskMutation } from '../../../services/tasks';
 import { TaskSchema } from '../../../validator/task-schema';
@@ -15,7 +16,7 @@ export const CreateTaskForm: React.FC = () => {
       initialValues={{
         name: '',
         isCompleted: false,
-        dueDate: new Date(),
+        dueDate: format(new Date(), 'yyyy-MM-dd'),
       }}
       validationSchema={TaskSchema}
       onSubmit={(task, actions) => {
