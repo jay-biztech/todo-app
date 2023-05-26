@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { format, parseISO } from 'date-fns';
 import { Field, Form, Formik } from 'formik';
 
 import { useTask } from '../../../services/tasks/useTask';
