@@ -1,28 +1,34 @@
-import { format } from 'date-fns';
-import { Field, Form, Formik } from 'formik';
 import React from 'react';
 
-import { useCreateTaskMutation } from '../../../services/tasks';
+import { format, parseISO } from 'date-fns';
+import { Field, Form, Formik } from 'formik';
+
+import { useTask } from '../../../services/tasks/useTask';
+import { useUpdateTaskMutation } from '../../../services/tasks/useUpdateTaskMutation';
 import { TaskSchema } from '../../../validator/task-schema';
 import Button from '../../atoms/Button';
 import { ButtonType } from '../../atoms/Button/types';
 import { DatePickerField } from '../../atoms/Fields/DatePicker';
 
-export const CreateTaskForm: React.FC = () => {
-  const { mutate: createTask } = useCreateTaskMutation();
+export const EditTaskForm: React.FC<{ id: string }> = ({ id }) => {
+  const { data: task, isLoading } = useTask(id);
+  const { mutate: updateTask } = useUpdateTaskMutation();
+
+  if (!task || isLoading) {
+    return <p>Loading...</p>;
+  }
 
   return (
     <Formik
       initialValues={{
-        name: '',
+        name: task.name,
         isCompleted: false,
-        dueDate: format(new Date(), 'yyyy-MM-dd'),
+        dueDate: task.dueDate,
       }}
       validationSchema={TaskSchema}
       onSubmit={(task, actions) => {
-        createTask(task);
+        updateTask({ id, ...task });
         actions.setSubmitting(false);
-        actions.resetForm();
       }}
     >
       {({ errors, touched }) => (
